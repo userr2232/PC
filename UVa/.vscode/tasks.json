@@ -6,9 +6,9 @@
             "command": "clang++",
             "args": [
                 "-o",
-                "10928", // executable
+                "11550", // executable
                 "-g",
-                "10928.cpp",
+                "11550.cpp",
                 "-v"
             ],
             "type": "shell",

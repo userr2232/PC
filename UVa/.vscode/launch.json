@@ -6,7 +6,7 @@
             "name": "CodeLLDB",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceRoot}/10928",
+            "program": "${workspaceRoot}/11550",
             "preLaunchTask": "build",
             "internalConsoleOptions": "openOnSessionStart",
             "terminal": "external"
