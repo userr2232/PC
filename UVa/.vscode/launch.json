@@ -1,0 +1,15 @@
+/* launch.json */
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "CodeLLDB",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceRoot}/10928",
+            "preLaunchTask": "build",
+            "internalConsoleOptions": "openOnSessionStart",
+            "terminal": "external"
+        }
+    ]
+}
