@@ -6,9 +6,10 @@
             "command": "clang++",
             "args": [
                 "-o",
-                "11991", // executable
+                "793", // executable
                 "-g",
-                "11991.cpp",
+                "-std=c++11",
+                "793.cpp",
                 "-v"
             ],
             "type": "shell",
