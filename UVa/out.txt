@@ -1,0 +1,10 @@
+        12        45    Bad Choice
+        31        32    Good Choice
+         1         1    Good Choice
+        44        20    Bad Choice
+      9999         9    Bad Choice
+         1     10000    Good Choice
+       333       222    Bad Choice
+      1000         1    Good Choice
+      6568         1    Good Choice
+      9876       567    Bad Choice
