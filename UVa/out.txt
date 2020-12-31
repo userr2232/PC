@@ -1,10 +1,11 @@
-        12        45    Bad Choice
-        31        32    Good Choice
-         1         1    Good Choice
-        44        20    Bad Choice
-      9999         9    Bad Choice
-         1     10000    Good Choice
-       333       222    Bad Choice
-      1000         1    Good Choice
-      6568         1    Good Choice
-      9876       567    Bad Choice
+Case 1: 1
+Case 2: 3
+Case 3: 7
+Case 4: 1
+Case 5: 11
+Case 6: 3
+Case 7: 9
+Case 8: 1
+Case 9: 9
+Case 10: 1
+Case 11: 1
