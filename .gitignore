@@ -5,5 +5,4 @@ lib/
 pyvenv.cfg
 **/*.out
 Codeforces/C/225.cc
-UVa/10461.cc
 **/*.txt
