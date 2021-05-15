@@ -38,6 +38,7 @@ int main() {
     int V, E, mst_cost{0};
     // initialize graph; V;
     E = graph.size();
+    sort(graph.begin(), graph.end());
     UnionFind uf(V);
     FOR(i,0,E-1) {
         auto [w, nodes] = graph[i];
