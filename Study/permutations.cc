@@ -2,19 +2,21 @@
 #include <vector>
 #define FOR(i,a,b) for(int i = a; i <= b; ++i)
 using namespace std;
+
 vector<int> permutation;
 vector<bool> taken;
 int n;
+
 void search() {
     if(permutation.size() == n) {
-        for(int x : permutation) cout << x << " ";
+        for(auto e : permutation) cout << e << " ";
         cout << "\n";
         return;
     }
-    FOR(i,0,n-1) {
+    FOR(i,1,n) {
         if(taken[i]) continue;
         taken[i] = true;
-        permutation.push_back(i+1);
+        permutation.push_back(i);
         search();
         taken[i] = false;
         permutation.pop_back();
@@ -23,8 +25,6 @@ void search() {
 
 int main() {
     cin >> n;
-    taken.assign(n, false);
+    taken.assign(n+1, false);
     search();
-
-    return 0;
 }

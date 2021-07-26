@@ -1,12 +1,12 @@
 //-7, 10, 9, 2, 3, 8, 8, 1, 2, 3, 4, 99
 #include <iostream>
-#include <algorithm>
 #include <vector>
-#define FOR(i,a,b) for(int i = a; i <= b; ++i)
+#include <algorithm>
 using namespace std;
+typedef vector<int> vi;
 int memo[10010];
+vi A;
 int LIS(int i) {
-    if(i == 0) return 1;
     int& ans = memo[i];
     if(ans != -1) return ans;
     ans = 1;
@@ -15,9 +15,8 @@ int LIS(int i) {
 }
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
     memset(memo, -1, sizeof memo);
     A = {-7, 10, 9, 2, 3, 8, 8, 1, 2, 3, 4, 99};
-    cout << LIS(A.size()-1) << "\n";
+    cout << LIS(A.size()-1) << endl;
+    return 0;
 }

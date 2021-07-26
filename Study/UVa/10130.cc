@@ -1,32 +1,20 @@
 #include <iostream>
-#include <vector>
 #include <algorithm>
+#define FOR(i,a,b) for(int i = a; i <= b; ++i)
 using namespace std;
 
-const int MAXN{1010}, MAXW{40};
-int N, memo[MAXN][MAXW], V[MAXN], W[MAXN];
+const int MAX_N{1010}, MAX_W{40};
+int n, memo[MAX_N][MAX_W], V[MAX_N], W[MAX_N];
 
 int dp(int id, int remW) {
-    if(id == N || remW == 0) return 0;
+    if(id == n || remW == 0) return 0;
     int& ans = memo[id][remW];
     if(ans != -1) return ans;
-    if(W[id] > remW) return dp(id+1, remW);
-    ans = max(dp(id+1, remW), V[id] + dp(id+1, remW-W[id]));
-    return ans;
+    if(W[id] > remW) return ans = dp(id+1, remW);
+    return ans = max(dp(id+1, remW), V[id]+dp(id+1, remW-W[id]));
 }
 
 int main() {
-    int T; cin >> T;
-    while(T--) {
-        cin >> N;
-        for(int i = 0; i < N-1; ++i) cin >> V[i] >> W[i];
-        int G; cin >> G;
-        int ans{0};
-        while(G--) {
-            int MW; cin >> MW;
-            ans += dp(0, MW);
-        }
-        cout << ans << "\n";
-    }
+
     return 0;
 }

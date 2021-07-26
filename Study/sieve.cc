@@ -1,15 +1,19 @@
 #include <iostream>
 #define FOR(i,a,b) for(int i = a; i <= b; ++i)
 using namespace std;
-bool sieve[1010];
-int main() {
-    int n; cin >> n;
-    sieve[0] = sieve[1] = true;
+const int N = 1e5+10;
+int sieve[N];
+void build_sieve(int n) {
+    sieve[1] = sieve[0] = true;
     FOR(x,2,n) {
         if(sieve[x]) continue;
-        FOR(u,2,n/x) sieve[u*x] = true;
+        FOR(u,2,n) sieve[x*u] = true;
     }
-    FOR(x,2,n) if(!sieve[x]) cout << x << " ";
-    cout << "\n";
+}
+
+int main() {
+    int n; cin >> n;
+    build_sieve(n);
+    FOR(i,0,n) if(!sieve[i]) cout << i << " ";
     return 0;
 }
