@@ -1,8 +1,9 @@
 #include <iostream>
-#include <vector>
 #include <algorithm>
-#include <utility>
+#include <vector>
 #include <queue>
+#include <utility>
+#include <functional>
 #define INF 1e9
 #define FOR(i,a,b) for(int i = a; i <= b; ++i)
 using namespace std;
@@ -10,6 +11,7 @@ typedef vector<int> vi;
 typedef pair<int,int> ii;
 typedef vector<ii> vii;
 typedef vector<vii> AdjList;
+
 AdjList graph;
 vi dist;
 
@@ -32,11 +34,11 @@ void dijkstra(int s) {
 int main() {
     int V, E; cin >> V >> E;
     graph.resize(V+1);
+    dist.assign(V+1, INF);
     FOR(i,1,E) {
         int u, v, w; cin >> u >> v >> w;
         graph[u].emplace_back({v, w});
         graph[v].emplace_back({u, w});
     }
-    dist.assign(V+1, INF);
     dijkstra(1);
 }
