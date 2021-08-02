@@ -18,6 +18,12 @@ void bellmanFord(int s) {
         auto [v, w] = graph[u][j];
         dist[v] = min(dist[v], dist[u]+w);
     }
+    bool hasNegativeCycle = false;
+    FOR(u,1,V) FOR(j,0,graph[u].size()-1) {
+        auto [v, w] = graph[u][j];
+        if(dist[v] > dist[u] + w) hasNegativeCycle = true;
+    }
+    if(hasNegativeCycle) cout << "HAS NEGATIVE CYCLE!!!!" << endl;
 }
 
 int main() {
