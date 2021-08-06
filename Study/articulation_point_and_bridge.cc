@@ -36,8 +36,8 @@ void articulationPointAndBridge(int u) {
 int main() {
     int V, E; cin >> V >> E;
     graph.resize(V+1);
-    int u, v;
-    FOR(i,1,E) cin >> u >> v, graph[u].emplace_back(v), graph[v].emplace_back(u);
+    int u, v, w;
+    FOR(i,1,E) cin >> u >> v, graph[u].emplace_back({v, w}), graph[v].emplace_back({u, w});
     dfs_num.assign(V+1, UNVISITED);
     dfs_low.assign(V+1, 0);
     dfs_parent.assign(V+1, 0);
