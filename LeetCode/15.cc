@@ -7,13 +7,7 @@ public:
             for(int j = k-1; j >= 1; --j) {
                 auto it = lower_bound(nums.begin(), nums.begin()+(j), -(nums[k]+nums[j]));
                 if(it == nums.begin()+j) continue;
-                if(*it + nums[j] + nums[k] == 0) {
-                    int ni{*it}, nj{nums[j]}, nk{nums[k]};
-                    if(ni > nj) swap(ni, nj);
-                    if(ni > nk) swap(ni, nk);
-                    if(nj > nk) swap(nj, nk);
-                    s.insert({ni,nj,nk});
-                }
+                if(*it + nums[j] + nums[k] == 0) s.insert({*it,nums[j],nums[k]});
             }
         }
         vector<vector<int>> ans(s.size());
