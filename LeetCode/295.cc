@@ -11,11 +11,9 @@ public:
     void addNum(int num) {
         if(n == 0) max_heap.push(num);
         else{
+            max_heap.push(num);
             min_heap.push(max_heap.top());
             max_heap.pop();
-            min_heap.push(num);
-            max_heap.push(min_heap.top());
-            min_heap.pop();
             if(max_heap.size() < min_heap.size()) {
                 max_heap.push(min_heap.top());
                 min_heap.pop();
