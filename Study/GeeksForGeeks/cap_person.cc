@@ -5,7 +5,7 @@
 using namespace std;
 const int MOD = 1e9+7;
 vector<vector<int>> dp((1<<10)+1, vector<int>(100+1, -1));
-vector<vector<int>> persons_with_cap;
+vector<vector<int>> persons_with_cap(100+1);
 int allmask;
 
 int countWays(int mask, int id) {
@@ -25,7 +25,6 @@ int countWays(int mask, int id) {
 
 int main() {
     int n; cin >> n;
-    v.resize(n);
     for(int i = 0; i < n; ++i) {
         string str;
         getline(cin, str);
