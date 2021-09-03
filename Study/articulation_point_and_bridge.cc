@@ -16,7 +16,7 @@ vector<bool> articulation_vertex;
 int dfsNumberCounter, rootChildren, dfsRoot;
 
 void articulationPointAndBridge(int u) {
-    dfs_low[u] = dfs_num[u] = dfsNumberCounter++;
+    dfs_low[u] = dfs_num[u] = ++dfsNumberCounter;
     for(int j = 0; j < graph[u].size(); ++j) {
         auto [v, w] = graph[u][j];
         if(dfs_num[v] == UNVISITED) {
