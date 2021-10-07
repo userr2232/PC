@@ -1,16 +1,18 @@
 #include <iostream>
-#include <string>
+#include <vector>
 #include <algorithm>
+#include <iterator>
 using namespace std;
 
-void next_permutation(string& s) {
-    auto it = is_sorted_until(rbegin(s), rend(s));
-    if(it != rend(s)) swap(*it, *upper_bound(rbegin(s), it, *it));
-    reverse(rbegin(s), it);
+void next_permutation(vector<int>& v) {
+    auto it = is_sorted_until(rbegin(v), rend(v));
+    if(it != rend(v)) swap(*it, *upper_bound(rbegin(v), it, *it));
+    reverse(rbegin(v), it);
 }
 
 int main() {
-    string s; cin >> s;
-    next_permutation(s);
-    cout << "next_permutation: " << s << endl;
+    int n; cin >> n;
+    vector<int> v(n); for(auto& e: v) cin >> e;
+    next_permutation(v);
+    for(auto e : v) cout << e << " ";
 }
