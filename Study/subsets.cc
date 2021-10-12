@@ -1,23 +1,24 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-typedef vector<int> vi;
 
-vi subset;
-int n;
+int n, counter;
+vector<int> v;
 
 void subsets(int i = 1) {
     if(i == n+1) {
-        for(auto e: subset) cout << e << " ";
-        cout << "\n";
+        cout << ++counter << ": ";
+        for(auto e : v) cout << e << " ";
+        cout << endl;
         return;
     }
-    subset.push_back(i);
+    v.emplace_back(i);
     subsets(i+1);
-    subset.pop_back();
+    v.pop_back();
     subsets(i+1);
 }
 
 int main() {
     cin >> n; subsets();
+    return 0;
 }
