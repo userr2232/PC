@@ -13,9 +13,9 @@ void add_string(string s) {
     for(int i = 0; i < n; ++i) {
         string_counter[node]++;
         int ord = s[i] - 'a';
-        int next_node = trie[node][ord];
-        if(next_node == 0) trie[node][ord] = ++nodeCounter, ends_here[next_node = nodeCounter] = true;
-        else if(i == n-1) ends_here[node] = true;
+        int& next_node = trie[node][ord];
+        if(next_node == 0) next_node = ++nodeCounter;
+        if(i == n-1) ends_here[node] = true;
         node = next_node;
     }
     string_counter[node]++;
