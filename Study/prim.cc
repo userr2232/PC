@@ -1,39 +1,43 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
-#include <queue>
+#include <algorithm>
+#include <functional>
 #include <utility>
+#include <queue>
 #define FOR(i,a,b) for(int i = a; i <= b; ++i)
 using namespace std;
 typedef vector<int> vi;
 typedef pair<int,int> ii;
+typedef vector<ii> vii;
 typedef vector<vii> AdjList;
 
 AdjList graph;
 vector<bool> taken;
-priority_queue<ii> pq;
+priority_queue<ii,vii,greater<ii>> pq;
 
-void process(int vtx) {
-    taken[vtx] = true;
-    FOR(i,0,graph[vtx].size()-1) {
-        auto [u, w] = graph[vtx][i];
-        if(!taken[u]) pq.push({-w,-u});
+void process(int u) {
+    taken[u] = true;
+    FOR(j,0,graph[u].size()-1) {
+        auto [v, w] = graph[u][j];
+        if(!taken[v]) pq.emplace(w, v);
     }
 }
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    // initialize graph
-    int V = graph.size(), mst_cost{0};
+    int V, E; cin >> V >> E;
+    graph.resize(V);
     taken.assign(V, false);
-    process(0);
-    while(!pq.empty()) {
-        auto [w, u] = pq.top();
-        w *= -1, u *= -1;
-        pq.pop();
-        if(!taken[u]) mst_cost += w, process(u);
+    FOR(i,1,E) {
+        int u, v, w; cin >> u >> v >> w;
+        graph[u].emplace_back(v, w);
+        graph[v].emplace_back(u, w);
     }
-    cout << mst_cost << "\n";
+    process(0);
+    int mst_cost{0};
+    while(!pq.empty()) {
+        auto [w, v] = pq.top(); pq.pop();
+        if(!taken[v]) mst_cost += w, process(v);
+    }
+    cout << "mst cost: " << mst_cost << endl;
     return 0;
 }
