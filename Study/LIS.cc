@@ -23,8 +23,10 @@ int main() {
         int pos = lower_bound(L.begin(), L.begin()+k, A[i]) - L.begin();
         L[pos] = A[i];
         L_id[pos] = i;
-        p[i] = pos ? L_id[pos-1] : -1;
-        if(k == pos) ++k, lis_end = i;
+        if(k == pos) {
+            ++k, lis_end = i;
+            p[i] = pos ? L_id[pos-1] : -1;
+        }
     }
     cout << k << endl;
     print_LIS(lis_end);
