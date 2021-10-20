@@ -15,18 +15,18 @@ void print_LIS(int i) {
 }
 
 int main() {
-    A = {-7, 10, 9, 2, 3, 8, 8, 1, 2, 3, 4, 99};
-    int n = A.size(), k{0}, lis_end{0};
+    int n; cin >> n;
+    A.resize(n);
+    for(auto& e : A) cin >> e;
+    int k{0}, lis_end{0};
     vi L(n,0), L_id(n,0);
-    p.assign(n,-1);
-    FOR(i,0,n-1) {
+    p.resize(n);
+    for(int i = 0; i < n-1; ++i) {
         int pos = lower_bound(L.begin(), L.begin()+k, A[i]) - L.begin();
         L[pos] = A[i];
         L_id[pos] = i;
-        if(k == pos) {
-            ++k, lis_end = i;
-            p[i] = pos ? L_id[pos-1] : -1;
-        }
+        p[i] = pos ? L_id[pos-1] : -1;
+        if(k == pos) ++k, lis_end = i;
     }
     cout << k << endl;
     print_LIS(lis_end);
