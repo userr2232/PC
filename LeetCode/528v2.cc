@@ -7,8 +7,7 @@ public:
     }
     
     int pickIndex() {
-        auto randNum = uniform_real_distribution<double>(0, 1)(generator);
-        auto target = randNum * accum.back();
+        auto target = uniform_real_distribution<double>(0, accum.back())(generator);
         return upper_bound(accum.begin(), accum.end(), target) - accum.begin();
     }
 };
