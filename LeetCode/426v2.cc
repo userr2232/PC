@@ -23,29 +23,27 @@ public:
 */
 
 class Solution {
+    void connect(Node* left, Node* right) {
+        if(left && right) {
+            left->right = right;
+            right->left = left;
+        }
+    }
+    
     pair<Node*,Node*> in_order_helper(Node* cur) {
         if(!cur) return {0, 0};
-        if(cur->left) {
-            const auto& [p, _] = in_order_helper(cur->left);
-            p->right = cur;
-            cur->left = p;
-        }
-        if(cur->right) {
-            const auto& [_, s] = in_order_helper(cur->right);
-            s->left = cur;
-            cur->right = s;                
-        }
-        Node *p{cur}, *s{cur};
-        while(p->right) p = p->right;
-        while(s->left) s = s->left;
-        return {p, s};
+        const auto& [p, mn] = in_order_helper(cur->left);
+        connect(p, cur);
+        const auto& [mx, s] = in_order_helper(cur->right);
+        connect(cur, s);
+        return {mx ? mx : cur, mn ? mn : cur};
     }
     
 public:
     Node* treeToDoublyList(Node* root) {
         if(!root) return 0;
         const auto& [greatest, smallest] = in_order_helper(root);
-        smallest->left = greatest;
-        greatest->right = smallest;
+        connect(greatest, smallest);
         return smallest;
     }
+};
