@@ -13,7 +13,7 @@ class Solution {
         int i{0}, j{0};
         const int m = str1.length(), n = str2.length();
         bool carry{false};
-        vector<char> ans;
+        string ans;
         while(i < m || j < n) {
             int sum;
             if(i < m && j < n)
@@ -25,10 +25,10 @@ class Solution {
             sum += static_cast<int>(carry);
             carry = sum >= 10;
             sum = sum >= 10 ? sum - 10 : sum;
-            ans.emplace_back(static_cast<char>('0'+sum));
+            ans += static_cast<char>('0'+sum);
         }
-        if(carry) ans.emplace_back('1');
-        return {ans.begin(), ans.end()};
+        if(carry) ans += '1';
+        return ans;
     }
     
     ListNode* build(const string& str) {
