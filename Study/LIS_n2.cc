@@ -1,22 +1,23 @@
-//-7, 10, 9, 2, 3, 8, 8, 1, 2, 3, 4, 99
+//-7, 10, 9, 2, 3, 8, 8, 1, 2, 3, 4
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
-typedef vector<int> vi;
-int memo[10010];
-vi A;
-int LIS(int i) {
+
+int LIS(int i, vector<int> const& A, vector<int>& memo) {
+    if(i == A.size()) return 0;
     int& ans = memo[i];
     if(ans != -1) return ans;
     ans = 1;
-    FOR(j,0,i-1) if(A[j] < A[i]) ans = max(ans, LIS(j)+1);
+    for(int j = i+1; j < A.size(); ++j) if(A[j] > A[i])
+        ans = max(ans, 1+LIS(j, A, memo));
     return ans;
 }
 
 int main() {
-    memset(memo, -1, sizeof memo);
-    A = {-7, 10, 9, 2, 3, 8, 8, 1, 2, 3, 4, 99};
-    cout << LIS(A.size()-1) << endl;
-    return 0;
+    vector<int> A = {20, -7, 10, 9, 2, 3, 8, 8, 1, 2, 3, 4};
+    vector<int> memo(A.size(), -1);
+    int ans{0};
+    for(int k = 0; k < A.size(); ++k)
+        ans = max(ans, LIS(k, A, memo));
+    cout << ans << endl;
 }
