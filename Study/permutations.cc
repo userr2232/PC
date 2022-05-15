@@ -1,30 +1,25 @@
 #include <iostream>
 #include <vector>
-#define FOR(i,a,b) for(int i = a; i <= b; ++i)
+
 using namespace std;
 
-vector<int> permutation;
-vector<bool> taken;
-int n;
-
-void search() {
-    if(permutation.size() == n) {
-        for(auto e : permutation) cout << e << " ";
-        cout << "\n";
+void permutations(vector<bool>& taken, vector<int>&& v = {}) {
+    if(v.size() == taken.size()) {
+        for(auto&& e : v) cout << e << " ";
+        cout << endl;
         return;
     }
-    FOR(i,1,n) {
-        if(taken[i]) continue;
+    for(int i = 0; i < taken.size(); ++i) if(!taken[i]) {
         taken[i] = true;
-        permutation.push_back(i);
-        search();
+        v.emplace_back(i);
+        permutations(taken, forward<vector<int>>(v));
+        v.pop_back();
         taken[i] = false;
-        permutation.pop_back();
     }
 }
 
 int main() {
-    cin >> n;
-    taken.assign(n+1, false);
-    search();
+    int n; cin >> n;
+    vector<bool> taken(n, false);
+    permutations(taken);
 }
