@@ -1,34 +1,31 @@
-//-7, 10, 9, 2, 3, 8, 8, 1, 2, 3, 4, 99
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#define FOR(i,a,b) for(int i = a; i <= b; ++i)
+#include <iterator>
 using namespace std;
-typedef vector<int> vi;
 
-vi A, p;
+void print_LIS(int i, vector<int> const& A, vector<int> const& p) {
+    if(p[i] != -1) print_LIS(p[i], A, p);
+    cout << (p[i] == -1 ? "" : " ") << A[i];
+}
 
-void print_LIS(int i) {
-    if(p[i] == -1) { cout << A[i]; return; }
-    print_LIS(p[i]);
-    cout << " " << A[i];
+void LIS(vector<int> const& A) {
+    const int n = A.size();
+    vector<int> L(n), L_id(n), p(n);
+    int lis_length{0}, lis_end{0};
+    for(int i = 0; i < n; ++i) {
+        auto pos = distance(L.begin(), lower_bound(L.begin(), L.begin()+lis_length, A[i]));
+        L[pos] = A[i];
+        L_id[pos] = i;
+        p[i] = pos ? L_id[pos-1] : -1;
+        if(pos == lis_length) lis_length++, lis_end = i;
+    }
+    print_LIS(lis_end, A, p);
 }
 
 int main() {
     int n; cin >> n;
-    A.resize(n);
-    for(auto& e : A) cin >> e;
-    int k{0}, lis_end{0};
-    vi L(n,0), L_id(n,0);
-    p.resize(n);
-    for(int i = 0; i < n-1; ++i) {
-        int pos = lower_bound(L.begin(), L.begin()+k, A[i]) - L.begin();
-        L[pos] = A[i];
-        L_id[pos] = i;
-        p[i] = pos ? L_id[pos-1] : -1;
-        if(k == pos) ++k, lis_end = i;
-    }
-    cout << k << endl;
-    print_LIS(lis_end);
-    return 0;
+    vector<int> A(n);
+    for(auto&& e : A) cin >> e;
+    LIS(A);
 }
